@@ -1,2 +1,4 @@
-*.txt
+resources.txt
+credentials.txt
+att-bot-monitoring.txt
 test.py
