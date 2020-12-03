@@ -57,7 +57,6 @@ class CheckData:
         if "Invalid Username/Password" in r.text:
             name = self.credentials[tail]
             datadigits = ["Invalid Username/Password"]
-            # print("invalid")
         else:
             name = re.search("([a-z]*\.[a-z]*|[A-Za-z0-9]+[0-9]{4,5})", r.text)
             datadigits = re.findall("-?[0-9]{1,3}\.[0-9]{1,3} [A-Za-z]*", r.text)
