@@ -33,14 +33,13 @@ class CheckData:
 
 
     def get_creds(self):
-        '''get contents of credentials.txt and append to tails list'''
+        '''Get contents of credentials.txt and append to tails list'''
         file = self.add_flags()
         #open, get contents of credentials.txt and append to credentials dictionary
         fileObject = open(file, 'r')
         fileContents = fileObject.read()
         arr = fileContents.split("\n")
-        # remove all appearances of empty strings from the array/list
-        arr = [i for i in arr if i != ""]  
+        arr = [i for i in arr if i != ""]    # remove all appearances of empty strings from the array/list
         # print(arr)
         for i in arr:
             arr = i.split(":")
@@ -50,7 +49,6 @@ class CheckData:
         
 
     def login(self, tail):
-        # r = requests.post(url1, data={"username":"chukwu.toochukwu", "password":"", "submit":"Submit"}, proxies=proxy, verify=False)
         r = self.s.post(self.url, data=unquote(urlencode({"head":'["shgBKOVPjxE=","G3EkHHMA/aU=","olvO0CaThvf4kUsw","olvO0CaThvf4kUsw"]', "tail":f'{tail}'})), headers=self.header)
         # print(r.status_code)
         # print(r.text)
@@ -66,7 +64,7 @@ class CheckData:
         
 
     def go_fast(self, tails):
-        ''''''
+        '''Multi-thread requests for all credentials'''
         with ThreadPoolExecutor() as executor:
             return executor.map(self.login, self.tails)
 
