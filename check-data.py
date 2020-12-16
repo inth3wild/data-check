@@ -64,7 +64,7 @@ class CheckData:
         
 
     def go_fast(self, tails):
-        '''Asynchronously make post requests for each credential'''
+        '''Simultaneously make POST requests for each credential'''
         with ThreadPoolExecutor() as executor:
             return executor.map(self.login, self.tails)
 
